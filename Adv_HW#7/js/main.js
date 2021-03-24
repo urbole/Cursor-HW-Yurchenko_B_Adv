@@ -46,9 +46,9 @@ console.log(`🚀 ~ Expect result for "Function №4" in 10 seconds:`);
 function getMySalary() {
   const minSalary = 1500,
     maxSalary = 2000;
-  const getRandomSalary = ((Math.random() * (maxSalary - minSalary)) + minSalary).toFixed(2);
+  const getRandomSalary = +((Math.random() * (maxSalary - minSalary)) + minSalary).toFixed(2);
   const resultTaxes = (this.tax * getRandomSalary);
-  const profit = (getRandomSalary - resultTaxes).toFixed(2);
+  const profit = +(getRandomSalary - resultTaxes).toFixed(2);
 
   return {
     salary: getRandomSalary,
