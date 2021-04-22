@@ -1,0 +1,47 @@
+#main {
+  background-color: #242424;
+  color: bisque;
+  text-align: center;
+  padding-top: 10%;
+  user-select: none;
+}
+
+.btn {
+  border: none;
+  background-color: bisque;
+  color: #242424;
+  margin: 5px;
+  padding: 0 10px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid #242424;
+  transition: 0.1s;
+}
+
+.btn:active,
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover {
+  background-color: #242424;
+  color: bisque;
+  border: 1px solid bisque;
+}
+
+#up_font-size:active {
+  transform: translateY(-8px);
+}
+
+#down_font-size:active {
+  transform: translateY(8px);
+}
+
+#reset_font-size {
+  display: none;
+  margin: 10px auto;
+  height: 30px;
+}
+
+
