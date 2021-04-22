@@ -31,10 +31,10 @@ function* newFontGenerator(data) {
 
   while (true) {
     if (data === 'up') {
-      currentFontSize++;
+      currentFontSize = +currentFontSize + 2;
       yield currentFontSize;
     } else if (data === 'down') {
-      currentFontSize--;
+      currentFontSize = currentFontSize - 2;
       yield currentFontSize;
     } else if (data === 'reset') {
       currentFontSize = computedFontSizeTitle;
@@ -44,16 +44,16 @@ function* newFontGenerator(data) {
 }
 const fontGeneratorUp = newFontGenerator('up');
 const fontGeneratorDown = newFontGenerator('down');
-const fontGenerator = newFontGenerator('reset');
+const fontGeneratorReset = newFontGenerator('reset');
 
 console.log('🚀 ~ fontGenerator.next("up").value ->', fontGeneratorUp.next().value);
 console.log('🚀 ~ fontGenerator.next("up").value ->', fontGeneratorUp.next().value);
 console.log('🚀 ~ fontGenerator.next("up").value ->', fontGeneratorUp.next().value);
-console.log('🚀 ~ fontGenerator.next().value ->', fontGenerator.next().value);
+console.log('🚀 ~ fontGenerator.next("reset").value ->', fontGeneratorReset.next().value);
 console.log('🚀 ~ fontGenerator.next("down").value ->', fontGeneratorDown.next().value);
 console.log('🚀 ~ fontGenerator.next("down").value ->', fontGeneratorDown.next().value);
 console.log('🚀 ~ fontGenerator.next("down").value ->', fontGeneratorDown.next().value);
-console.log('🚀 ~ fontGenerator.next().value ->', fontGenerator.next().value);
+console.log('🚀 ~ fontGenerator.next("reset").value ->', fontGeneratorReset.next().value);
 
 upFontSizeBtn.addEventListener('click', () => {
   hwTitle.style.fontSize = `${fontGeneratorUp.next().value}px`;
@@ -68,7 +68,7 @@ downFontSizeBtn.addEventListener('click', () => {
 });
 
 resetFontSizeBtn.addEventListener('click', () => {
-  hwTitle.style.fontSize = `${fontGenerator.next().value}px`;
+  hwTitle.style.fontSize = `${fontGeneratorReset.next().value}px`;
   hwTitle.removeAttribute('style');
   resetFontSizeBtn.setAttribute('style', 'display:none');
   infoOfCurrentSize.innerText = `current font size: ${computedFontSizeTitle}px`;
