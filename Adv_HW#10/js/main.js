@@ -78,6 +78,8 @@ showBtn.insertAdjacentHTML('afterend', blinkBlocksBtn);
 document.getElementById('blink_blocks').addEventListener('click', setIntervalBlink);
 
 function changeColorBG() {
+  const btnDisabled = document.getElementById('blink_blocks');
+  btnDisabled.setAttribute('style', "display:none");
   const blockItem = document.querySelectorAll('.box__item');
   blockItem.forEach(item => item.style.backgroundColor = generateColor());
 }
