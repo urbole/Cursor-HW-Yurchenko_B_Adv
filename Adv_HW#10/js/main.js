@@ -4,14 +4,19 @@ const main = document.body;
 main.classList.add('main');
 main.style.backgroundColor = '#242424';
 main.style.boxSizing = 'border-box';
+main.style.display = 'flex';
+main.style.flexDirection = 'column';
+main.style.alignItems = 'center';
 const title =
-  `<h2 class="tile"
+  `<h2 id="title"
     style="color:bisque;
-    padding-top: 10%;
+    margin-top: 10%;
     text-align: center;">
     Adv_HW#10 "DOM"
   </h2>`;
 main.insertAdjacentHTML('afterbegin', title);
+const myTitle = document.getElementById('title');
+console.log('🚀 ~ myTitle', myTitle);
 const generateColor = () =>
   '#' + Math.floor(Math.random() * 16777215).toString(16);
 
@@ -22,11 +27,10 @@ function generateBlocks() {
   const btnBlink = document.getElementById('blink_blocks');
   btnBlink.setAttribute(
     'style',
-      `display:inline-block;
+    `display:inline-block;
       border: none;
       background-color: bisque;
       color: #242424;
-      margin: 5px;
       padding: 0 10px;
       height: 50px;
       cursor: pointer;
@@ -41,7 +45,7 @@ function generateBlocks() {
       width: 250px;
       height: 250px;">
     </div>`;
-  main.insertAdjacentHTML('afterend', box);
+  main.insertAdjacentHTML('beforeend', box);
   const container = document.querySelector('.box');
 
   for (let i = 1; i <= 25; i++) {
@@ -60,9 +64,9 @@ function generateBlocks() {
 const showBlocksBtn =
   `<button id="show_blocks"
     style=" border: none;
+    display:inline-block;
     background-color: bisque;
     color: #242424;
-    margin: 5px;
     padding: 0 10px;
     height: 50px;
     cursor: pointer;
@@ -70,7 +74,7 @@ const showBlocksBtn =
     border: 1px solid #242424;">
       Show blocks
   </button>`;
-main.insertAdjacentHTML('afterbegin', showBlocksBtn);
+myTitle.insertAdjacentHTML('afterend', showBlocksBtn);
 document.getElementById('show_blocks').addEventListener('click', generateBlocks);
 const showBtn = document.getElementById('show_blocks');
 const blinkBlocksBtn =
