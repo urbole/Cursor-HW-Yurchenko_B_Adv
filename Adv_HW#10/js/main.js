@@ -12,30 +12,26 @@ const title =
     style="color:bisque;
     margin-top: 10%;
     text-align: center;">
-    Adv_HW#10 "DOM"
   </h2>`;
 main.insertAdjacentHTML('afterbegin', title);
 const myTitle = document.getElementById('title');
-console.log('🚀 ~ myTitle', myTitle);
-const generateColor = () =>
-  '#' + Math.floor(Math.random() * 16777215).toString(16);
+myTitle.innerHTML = 'Adv_HW#10 "DOM"';
+
+const generateColor = () => '#' + Math.floor(Math.random() * 16777215).toString(16);
 
 function generateBlocks() {
-  let idItem = 0;
   const btnDisabled = document.getElementById('show_blocks');
   btnDisabled.setAttribute('style', "display:none");
   const btnBlink = document.getElementById('blink_blocks');
-  btnBlink.setAttribute(
-    'style',
+  btnBlink.setAttribute('style',
     `display:inline-block;
-      border: none;
-      background-color: bisque;
-      color: #242424;
-      padding: 0 10px;
-      height: 50px;
-      cursor: pointer;
-      border-radius: 3px;
-      border: 1px solid #242424;`
+    background-color: #242424;
+    color: bisque;
+    padding: 0 10px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid bisque;`
   );
   const box =
     `<div class="box"
@@ -47,6 +43,7 @@ function generateBlocks() {
     </div>`;
   main.insertAdjacentHTML('beforeend', box);
   const container = document.querySelector('.box');
+  let idItem = 0;
 
   for (let i = 1; i <= 25; i++) {
     idItem = idItem++;
@@ -63,8 +60,7 @@ function generateBlocks() {
 
 const showBlocksBtn =
   `<button id="show_blocks"
-    style=" border: none;
-    display:inline-block;
+    style="display:inline-block;
     background-color: bisque;
     color: #242424;
     padding: 0 10px;
@@ -77,20 +73,7 @@ const showBlocksBtn =
 myTitle.insertAdjacentHTML('afterend', showBlocksBtn);
 document.getElementById('show_blocks').addEventListener('click', generateBlocks);
 const showBtn = document.getElementById('show_blocks');
-const blinkBlocksBtn =
-  `<button id="blink_blocks"
-    style="display:none;
-    border: none;
-    background-color: bisque;
-    color: #242424;
-    margin: 5px;
-    padding: 0 10px;
-    height: 50px;
-    cursor: pointer;
-    border-radius: 3px;
-    border: 1px solid #242424;">
-      Blink blocks
-  </button>`;
+const blinkBlocksBtn = `<button id="blink_blocks" style="display:none;">Blink blocks</button>`;
 showBtn.insertAdjacentHTML('afterend', blinkBlocksBtn);
 document.getElementById('blink_blocks').addEventListener('click', setIntervalBlink);
 
