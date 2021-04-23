@@ -18,9 +18,21 @@ const generateColor = () =>
 function generateBlocks() {
   let idItem = 0;
   const btnDisabled = document.getElementById('show_blocks');
-  btnDisabled.setAttribute("disabled", "disabled");
+  btnDisabled.setAttribute('style', "display:none");
   const btnBlink = document.getElementById('blink_blocks');
-  btnBlink.setAttribute('style', "display:inline-block");
+  btnBlink.setAttribute(
+    'style',
+      `display:inline-block;
+      border: none;
+      background-color: bisque;
+      color: #242424;
+      margin: 5px;
+      padding: 0 10px;
+      height: 50px;
+      cursor: pointer;
+      border-radius: 3px;
+      border: 1px solid #242424;`
+  );
   const box =
     `<div class="box"
       style="display: flex;
@@ -45,11 +57,36 @@ function generateBlocks() {
   }
 }
 
-const showBlocksBtn = `<button id="show_blocks">Show blocks</button>`;
+const showBlocksBtn =
+  `<button id="show_blocks"
+    style=" border: none;
+    background-color: bisque;
+    color: #242424;
+    margin: 5px;
+    padding: 0 10px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #242424;">
+      Show blocks
+  </button>`;
 main.insertAdjacentHTML('afterbegin', showBlocksBtn);
 document.getElementById('show_blocks').addEventListener('click', generateBlocks);
 const showBtn = document.getElementById('show_blocks');
-const blinkBlocksBtn = `<button style="display:none" id="blink_blocks">Blink blocks</button>`;
+const blinkBlocksBtn =
+  `<button id="blink_blocks"
+    style="display:none;
+    border: none;
+    background-color: bisque;
+    color: #242424;
+    margin: 5px;
+    padding: 0 10px;
+    height: 50px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #242424;">
+      Blink blocks
+  </button>`;
 showBtn.insertAdjacentHTML('afterend', blinkBlocksBtn);
 document.getElementById('blink_blocks').addEventListener('click', setIntervalBlink);
 
