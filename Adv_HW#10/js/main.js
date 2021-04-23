@@ -25,13 +25,13 @@ function generateBlocks() {
   const btnBlink = document.getElementById('blink_blocks');
   btnBlink.setAttribute('style',
     `display:inline-block;
-    background-color: #242424;
-    color: bisque;
-    padding: 0 10px;
-    height: 50px;
-    cursor: pointer;
-    border-radius: 3px;
-    border: 1px solid bisque;`
+      background-color: #242424;
+      color: bisque;
+      padding: 0 10px;
+      height: 50px;
+      cursor: pointer;
+      border-radius: 3px;
+      border: 1px solid bisque;`
   );
   const box =
     `<div class="box"
