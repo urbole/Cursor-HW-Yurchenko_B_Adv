@@ -37,8 +37,8 @@ const students = [{
 */
 const getSubjects = userInput => {
   if (userInput.subjects) {
-    const newArr = Object.keys(userInput.subjects);
-    const changeInAppearance = newArr.map(element => (
+    const newArrSubjects = Object.keys(userInput.subjects);
+    const changeInAppearance = newArrSubjects.map(element => (
       element[0].toUpperCase().concat(element.slice(1))).replaceAll('_', ' '));
 
     return changeInAppearance;
@@ -52,35 +52,29 @@ console.log('Function №1:', subjectList);
 const getAverageMark = userInput => {
   let result = 0;
   if (userInput.subjects) {
-    let newMarkArr = [];
+    let newMark = [];
     let sum = 0;
     const markArr = Object.values(userInput.subjects);
-    markArr.map(element => (newMarkArr = newMarkArr.concat(element)));
-    newMarkArr.forEach(function (item, i, newMarkArr) {
-      sum = (sum + item / newMarkArr.length);
+    const ollMarkArr = markArr.flat();
+    ollMarkArr.forEach(function (item, i, newMark) {
+      sum = (sum + item / newMark.length);
       result = +sum.toFixed(2);
-
-      return result;
     });
   }
 
   return result;
-}
+};
 
 const averageMark = getAverageMark(students[0]);
 console.log('Function №2:', averageMark);
 
 // 3
 const getStudentInfo = function (userInput) {
-  const newObj = Object.values(userInput);
+  const newStudentInfoObj = Object.values(userInput);
   const averageMark = getAverageMark(userInput);
-  const name = newObj[0];
-  const course = newObj[1];
-  const result = {
-    course: course,
-    name: name,
-    averageMark: averageMark,
-  };
+  const name = newStudentInfoObj[0];
+  const course = newStudentInfoObj[1];
+  const result = { course, name, averageMark };
 
   return result;
 };
@@ -91,15 +85,7 @@ console.log('Function №3:', studentInfo);
 // 4
 const getStudentsNames = function (students) {
   let result = [];
-
-  for (const [name] in students) {
-
-    if (Object.hasOwnProperty.call(students, [name])) {
-      const element = students[name];
-      const studentInfoArr = Object.values(element);
-      result.push(studentInfoArr[0]);
-    }
-  }
+  Object.values(students).map(element => result.push(element.name));
 
   return result.sort();
 };
@@ -144,7 +130,7 @@ function calculateWordLetters(userInput) {
     }
     resultObj[lettersArr[count]] = counter;
   }
-  
+
   return resultObj;
 }
 const costingResult = calculateWordLetters("тест");
