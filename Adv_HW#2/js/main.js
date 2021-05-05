@@ -1,3 +1,5 @@
+alert('Програма яка виконує складання чисел від N до M обраних користувачем');
+
 let startNumber = null,
     finishNumber = null,
     result = 0;
