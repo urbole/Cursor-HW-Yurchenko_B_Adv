@@ -26,9 +26,9 @@ module.exports = {
         ],
       },
       {
-				test: /\.(ogg|mp3|wav|mpe?g)$/i,
-				use: 'file-loader'
-			},
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        use: 'file-loader'
+      }
     ],
   },
   plugins: [

@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ['./src/index.js', '@babel/polyfill'],
   mode: 'production',
   module: {
     rules: [
@@ -26,6 +26,26 @@ module.exports = {
 					outputPath: 'assets/sounds',
 				},
 			},
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
+				test: /\.m?js$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env']
+					}
+				}
+			}
     ],
   },
   output: {
