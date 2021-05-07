@@ -1,5 +1,6 @@
 "use strick";
-
+import 'core-js';
+import 'regenerator-runtime/runtime';
 import {
   applePriceKg, mangoPriceKg, kiwiPriceKg, sumPrices, sumRoundedPrices,
   hundredsRoundedSumPrices, oddEvenCheck, change, meanPrices, toPay, income
