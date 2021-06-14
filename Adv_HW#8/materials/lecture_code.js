@@ -15,14 +15,6 @@
 // userInfo(user);
 // userInfo(admin);
 
-// console.log(`${vladislav.finished} заданий готово`);
-// console.log(vladislav.inprogress('Object'));
-// console.log(`${vladislav.finished} заданий готово`);
-
-// console.log(`${oleh.finished} заданий готово`);
-// console.log(oleh.inprogress('Array'));
-// console.log(`${oleh.finished} заданий готово`);
-
 // const vladislav = {
 //   name: 'Vladislav',
 //   finished: 5,
@@ -41,6 +33,14 @@
 //   }
 // };
 
+// console.log(`${vladislav.finished} заданий готово`);
+// console.log(vladislav.inprogress('Object'));
+// console.log(`${vladislav.finished} заданий готово`);
+
+// console.log(`${oleh.finished} заданий готово`);
+// console.log(oleh.inprogress('Array'));
+// console.log(`${oleh.finished} заданий готово`);
+
 // const Student = function (name, finished, inprogress) {
 //   this.name = name;
 //   this.finished = finished;
@@ -55,35 +55,35 @@
 // console.log(vladislav);
 // console.log(oleh);
 
-// class Student {
-//   constructor(name, finished) {
-//     this.name = name;
-//     this.finished = finished;
-//   }
+class Student {
+  constructor(name, finished) {
+    this.name = name;
+    this.finished = finished;
+  }
 
-//   static sum(finished) {
-//     return 10 - finished;
-//   }
+  static sum(finished) {
+    return 10 - finished;
+  }
 
-//   get getName() {
-//     return this.name;
+  get getName() {
+    return this.name;
+  }
 
-//   }
+  set setName(name) {
+    this.name = name;
+  }
+}
 
-//   set setName(name) {
-//     this.name = name;
-//   }
+const vladislav = new Student('Vladislav', 5);
+const oleh = new Student('Oleh', 4);
 
-// }
+console.log(Student.sum(oleh.finished));
+console.log(vladislav.getName);
 
-// const vladislav = new Student('Vladislav', 5);
-// const oleh = new Student('Oleh', 4);
+vladislav.setName = 'Oleh';
+console.log(vladislav);
 
-// // console.log(Student.sum(oleh.finished));
-// // console.log(vladislav.getName);
-
-// vladislav.setName = 'Oleh';
-// console.log(vladislav);
+// ***************************************************************************
 
 class Ship {
   constructor(name, country, health) {
