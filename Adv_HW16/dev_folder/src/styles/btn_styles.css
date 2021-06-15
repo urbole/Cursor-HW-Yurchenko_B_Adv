@@ -36,12 +36,6 @@ button:active {
   transform: translateY(8px);
 }
 
-/* #reset_font-size {
-  display: none;
-  margin: 10px auto;
-  height: 30px;
-} */
-
 #logo_btn {
   width: auto;
   height: auto;
@@ -57,6 +51,6 @@ button:active {
   background-color: bisque;
 }
 
-#prev_hw {
+#next_hw {
   margin-left: auto;
 }
