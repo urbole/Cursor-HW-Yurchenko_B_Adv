@@ -8,12 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Adv_HW#13 "Робота з сервером"</title>
   <style>
-    .main {
+    #main {
       background-color: #242424;
       color: bisque;
       box-sizing: border-box;
-      width: 99vw;
-      /* padding-top: 10%; */
     }
 
     h2 {
@@ -29,43 +27,55 @@
       margin: 0 auto;
     }
 
-    figure {
-      border: 1px solid #ffebcd;
-      display: inline-block;
-      width: 10rem;
-    }
-
-    img {
-      margin: 1vw;
-      /* padding: 1vw; */
-    }
-
-    figcaption {
-      margin: 1.5rem;
+    .figure {
+      border: 1px solid #777676;
+      display: flex;
+      flex-direction: column;
       align-items: center;
+      width: 10rem;
+      padding: 20px;
+      gap: 10px;
+    }
+
+    #wrapper_for_cards,
+    #wrapper_for_planets {
+      padding: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      justify-content: center;
+    }
+
+    .svg {
+      width: 60px;
+    }
+
+    .figcaption {
+      text-align: center;
     }
   </style>
 </head>
 
-<body class="main">
+<body id="main">
   <h2>HW#13 "Робота з сервером"</h2>
-  <!-- <button id="get_planets">Get all planets</button> -->
-  <button id="get_info">Episode characters</button>
-  <button id="hide_get_info">Hide characters</button>
+  <select name="episodes" id="select_episode">
+    <option value="1">1</option>
+    <option value="2" selected>2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+  </select>
+  <button id="test_get_info">test_get_info</button>
+  <div id="wrapper_for_cards"></div>
+  <button id="get_planets">Get all planets</button>
+  <div id="wrapper_for_planets"></div>
 
-  <!-- <select name="episodes" id="select_episode">
-    <option value="number_episode">1</option>
-    <option value="number_episode" selected>2</option>
-    <option value="number_episode">3</option>
-    <option value="number_episode">4</option>
-    <option value="number_episode">5</option>
-    <option value="number_episode">6</option>
-  </select> -->
 
-  <button id="show_list_planets">Planets list</button>
-  <button id="hide_list_planets">Hide planets list</button>
+  <!-- <button id="show_list_planets">Planets list</button> -->
+  <!-- <button id="hide_list_planets">Hide planets list</button> -->
   <!-- <button id="next_list_planets">Next episode</button> -->
-  
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <script src="js/main.js"></script>
