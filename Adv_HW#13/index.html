@@ -12,17 +12,22 @@
 
 <body id="main">
   <h2 class="title">HW#13 "Робота з сервером"</h2>
-  <select class="select" name="episodes" id="select_episode">
-    <option class="option" value="1">Episode 1</option>
-    <option class="option" value="2" selected>Episode 2</option>
-    <option class="option" value="3">Episode 3</option>
-    <option class="option" value="4">Episode 4</option>
-    <option class="option" value="5">Episode 5</option>
-    <option class="option" value="6">Episode 6</option>
-  </select>
-  <button class="btn" id="test_get_info">Display characters</button>
+
+  <div class="wrapper">
+    <select class="select" name="episodes" id="select_episode">
+      <option class="option" value="1">Episode 1</option>
+      <option class="option" value="2" selected>Episode 2</option>
+      <option class="option" value="3">Episode 3</option>
+      <option class="option" value="4">Episode 4</option>
+      <option class="option" value="5">Episode 5</option>
+      <option class="option" value="6">Episode 6</option>
+    </select>
+    <button class="btn" id="test_get_info">Display characters</button>
+  </div>
   <div id="wrapper_for_cards"></div>
-  <button class="btn" id="get_planets">Get all planets</button>
+  <div class="wrapper">
+    <button class="btn" id="get_planets">Get all planets</button>
+  </div>
   <div id="wrapper_for_planets"></div>
 
   <script src="js/main.js"></script>

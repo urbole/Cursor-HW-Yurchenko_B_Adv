@@ -2,6 +2,16 @@
   background-color: #242424;
   color: bisque;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
 }
 
 .title {
@@ -14,8 +24,8 @@
   border: none;
   background-color: bisque;
   color: #242424;
-  margin: 25px;
-  padding: 10px 25px;
+  /* margin: 25px; */
+  padding: 5px 15px;
   cursor: pointer;
   border-radius: 3px;
   border: 1px solid #242424;
@@ -50,6 +60,7 @@
   color: #000;
   cursor: auto;
 }
+
 
 .card {
   border: 1px solid bisque;
