@@ -219,20 +219,21 @@ document.getElementById('test_get_info').addEventListener('click', getInfoCharac
 
 const wrapperPlanets = document.getElementById('wrapper_for_planets');
 wrapperPlanets.insertAdjacentHTML('beforebegin', `
-  <button class='btn next_planets_list' id="next_planets_list" style="display:none">
+  <button class='btn next_planets_list' id="next_planets_list" disabled="disabled">
     Next planets list
   </button>
   `);
 wrapperPlanets.insertAdjacentHTML('beforebegin', `
-  <button class='btn prev_planets_list' id="prev_planets_list" style="display:none">
+  <button class='btn prev_planets_list' id="prev_planets_list" disabled="disabled">
     Prev planets list
   </button>
   `);
 
 
 const getAllPlanets = () => {
-  document.getElementById('get_planets').setAttribute("style", "display:none");
-  document.getElementById('next_planets_list').removeAttribute("style", "display:block");
+  document.getElementById('get_planets').setAttribute("disabled","disabled");
+  // document.getElementById('test').setAttribute("disabled","disabled");
+  document.getElementById('next_planets_list').removeAttribute("disabled");
   let url = 'https://swapi.dev/api/planets/?page=1';
 
   fetch(url)
@@ -253,7 +254,7 @@ const getAllPlanets = () => {
 
   const getNextListPlanets = () => {
     document.getElementById('wrapper_for_planets').innerHTML = '';
-    document.getElementById('prev_planets_list').removeAttribute("style", "display:block");
+    document.getElementById('prev_planets_list').removeAttribute("disabled");
 
 
     fetch(url)
@@ -281,8 +282,8 @@ const getAllPlanets = () => {
             });
         } else {
           document.getElementById('wrapper_for_planets').innerHTML = '';
-          document.getElementById('get_planets').removeAttribute("style", "display:block");
-          document.getElementById('next_planets_list').setAttribute("style", "display:none");
+          document.getElementById('next_planets_list').setAttribute("disabled","disabled");
+          window.location.reload();
         }
       });
   };
@@ -291,7 +292,7 @@ const getAllPlanets = () => {
 
   const getPrevListPlanets = () => {
     document.getElementById('wrapper_for_planets').innerHTML = '';
-    document.getElementById('next_planets_list').removeAttribute("style", "display:block");
+    document.getElementById('next_planets_list').removeAttribute("disabled");
 
     fetch(url)
       .then((response) => {
@@ -316,9 +317,8 @@ const getAllPlanets = () => {
             });
         } else {
           document.getElementById('wrapper_for_planets').innerHTML = '';
-          document.getElementById('prev_planets_list').setAttribute("style", "display:none");
-          document.getElementById('next_planets_list').setAttribute("style", "display:none");
-          document.getElementById('get_planets').removeAttribute("style", "display:block");
+          document.getElementById('prev_planets_list').setAttribute("disabled","disabled");
+          window.location.reload();
         }
       });
   };
