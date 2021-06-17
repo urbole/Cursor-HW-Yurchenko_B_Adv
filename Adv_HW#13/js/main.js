@@ -48,7 +48,7 @@ function getAvatar(name) {
     "http://swapi.dev/api/people/16/":
       () => 'https://starwars.ru/media/cache/8e/c3/8ec3020e0940073798008e494f8535ae.png',
     "http://swapi.dev/api/people/18/":
-      () => 'https://starwars.ru/media/cache/2e/af/2eaf8b6f0e8288d4d450beab65e6bc94.png',
+      () => 'https://static.wikia.nocookie.net/rustarwars/images/6/60/WedgeHelmetless-ROTJHD.jpg',
     "http://swapi.dev/api/people/19/":
       () => 'https://static.wikia.nocookie.net/starwars/images/e/eb/JekPorkins-DB.png',
     "http://swapi.dev/api/people/20/":
@@ -204,12 +204,12 @@ const getInfoCharactersOnEpisode = () => {
           })
           .then((data) => {
             wrapperCards.insertAdjacentHTML('beforeend', `
-            <div class='figure'>
-              <img class='svg' src=${getAvatar(data.url)} alt="${data.name} photo">
+            <div class='card'>
               <span class='figcaption' id="char_name"><i>${data.name}</i></span>
-              <span class='figcaption' id="char_birth">ДР: <i>${data.birth_year}</i></span>
+              <img class='svg' src=${getAvatar(data.url)} alt="${data.name} photo">
               <span class='figcaption' id="char_gender"><img style="width: 1rem;" ${getValueForGender(data.gender)}></span>
-              </div>`);
+              <span class='figcaption' id="char_birth">ДР : <i>${data.birth_year}</i></span>
+            </div>`);
           });
       });
     });
@@ -219,14 +219,20 @@ document.getElementById('test_get_info').addEventListener('click', getInfoCharac
 
 const wrapperPlanets = document.getElementById('wrapper_for_planets');
 wrapperPlanets.insertAdjacentHTML('beforebegin', `
-  <button class='next_planets_list' id="next_planets_list" style="display:none">next_planets_list</button>`);
+  <button class='btn next_planets_list' id="next_planets_list" style="display:none">
+    Next planets list
+  </button>
+  `);
 wrapperPlanets.insertAdjacentHTML('beforebegin', `
-  <button class='prev_planets_list' id="prev_planets_list" style="display:none">prev_planets_list</button>`);
+  <button class='btn prev_planets_list' id="prev_planets_list" style="display:none">
+    Prev planets list
+  </button>
+  `);
 
 
 const getAllPlanets = () => {
-  document.getElementById('get_planets').setAttribute("style","display:none");
-  document.getElementById('next_planets_list').removeAttribute("style","display:block");
+  document.getElementById('get_planets').setAttribute("style", "display:none");
+  document.getElementById('next_planets_list').removeAttribute("style", "display:block");
   let url = 'https://swapi.dev/api/planets/?page=1';
 
   fetch(url)
@@ -236,7 +242,7 @@ const getAllPlanets = () => {
     .then((data) => {
       data.results.map((planet) => {
         wrapperPlanets.insertAdjacentHTML('beforeend', `
-        <div class='figure'>
+        <div class='card'>
           <img class='svg' src="assets/img/planet.svg" alt="">
           <span>${planet.name}</span>
         </div>`);
@@ -247,16 +253,16 @@ const getAllPlanets = () => {
 
   const getNextListPlanets = () => {
     document.getElementById('wrapper_for_planets').innerHTML = '';
-    document.getElementById('prev_planets_list').removeAttribute("style","display:block");
-    
+    document.getElementById('prev_planets_list').removeAttribute("style", "display:block");
+
 
     fetch(url)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-      console.log('🚀 ~ data.next', data);
-        
+        console.log('🚀 ~ data.next', data);
+
         if (data.next !== null) {
           url = data.next.replaceAll('http:', 'https:');
           fetch(url)
@@ -267,7 +273,7 @@ const getAllPlanets = () => {
               data.results.map((planet) => {
                 const wrapperPlanets = document.getElementById('wrapper_for_planets');
                 wrapperPlanets.insertAdjacentHTML('beforeend', `
-                  <div class='figure'>
+                  <div class='card'>
                     <img class='svg' src="assets/img/planet.svg" alt="">
                     <span>${planet.name}</span>
                   </div>`);
@@ -275,10 +281,8 @@ const getAllPlanets = () => {
             });
         } else {
           document.getElementById('wrapper_for_planets').innerHTML = '';
-          document.getElementById('next_planets_list').setAttribute("style","display:none");
-
-          // document.getElementById('next_planets_list').disable = true;
-          // console.log(document.getElementById('next_planets_list'));
+          document.getElementById('get_planets').removeAttribute("style", "display:block");
+          document.getElementById('next_planets_list').setAttribute("style", "display:none");
         }
       });
   };
@@ -287,15 +291,13 @@ const getAllPlanets = () => {
 
   const getPrevListPlanets = () => {
     document.getElementById('wrapper_for_planets').innerHTML = '';
-    document.getElementById('next_planets_list').removeAttribute("style","display:block");
+    document.getElementById('next_planets_list').removeAttribute("style", "display:block");
 
     fetch(url)
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-      console.log('🚀 ~ data.previous', data);
-        
         if (data.previous !== null) {
           url = data.previous.replaceAll('http:', 'https:');
           fetch(url)
@@ -306,7 +308,7 @@ const getAllPlanets = () => {
               data.results.map((planet) => {
                 const wrapperPlanets = document.getElementById('wrapper_for_planets');
                 wrapperPlanets.insertAdjacentHTML('beforeend', `
-                  <div class='figure'>
+                  <div class='card'>
                     <img class='svg' src="assets/img/planet.svg" alt="">
                     <span>${planet.name}</span>
                   </div>`);
@@ -314,10 +316,9 @@ const getAllPlanets = () => {
             });
         } else {
           document.getElementById('wrapper_for_planets').innerHTML = '';
-          document.getElementById('prev_planets_list').setAttribute("style","display:none");
-
-          document.getElementById('get_planets').removeAttribute("style","display:block");
-
+          document.getElementById('prev_planets_list').setAttribute("style", "display:none");
+          document.getElementById('next_planets_list').setAttribute("style", "display:none");
+          document.getElementById('get_planets').removeAttribute("style", "display:block");
         }
       });
   };

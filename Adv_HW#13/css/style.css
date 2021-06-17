@@ -1,0 +1,65 @@
+#main {
+  background-color: #242424;
+  color: bisque;
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+}
+
+
+
+.btn,
+.select,
+.option {
+  border: none;
+  background-color: bisque;
+  color: #242424;
+  margin: 25px;
+  padding: 10px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid #242424;
+  transition: 0.1s;
+}
+
+.btn:active,
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover {
+  background-color: #242424;
+  color: bisque;
+  border: 1px solid bisque;
+}
+
+.card {
+  border: 1px solid bisque;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  padding: 10px;
+  gap: 15px;
+  border-radius: 5px;
+}
+
+#wrapper_for_cards,
+#wrapper_for_planets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.svg {
+  width: 60px;
+}
+
+.figcaption {
+  text-align: center;
+}
