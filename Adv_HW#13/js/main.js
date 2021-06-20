@@ -189,27 +189,17 @@ const getInfoCharactersOnEpisode = () => {
   const optionValue = document.getElementsByTagName("option")[optionIndex].value;
   const wrapperCards = document.getElementById('wrapper_for_cards');
 
-  fetch(`https://swapi.dev/api/films/${optionValue}`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      data.characters.map((character) => {
-        // let transformUrl = '';
-        // transformUrl = character.replaceAll('http:', 'https:');
-        // console.log('🚀 ~ transformUrl', transformUrl);
-
-        fetch(character)
-          .then((response) => {
-            return response.json();
-          })
-          .then((data) => {
+  axios.get(`https://swapi.dev/api/films/${optionValue}`)
+    .then((res) => {
+      res.data.characters.map((character) => {
+        axios.get(character)
+          .then((res) => {
             wrapperCards.insertAdjacentHTML('beforeend', `
             <div class='card'>
-              <span class='figcaption' id="char_name"><i>${data.name}</i></span>
-              <img class='svg' src=${getAvatar(data.url)} alt="${data.name} photo">
-              <span class='figcaption' id="char_gender"><img style="width: 1rem;" ${getValueForGender(data.gender)}></span>
-              <span class='figcaption' id="char_birth">ДР : <i>${data.birth_year}</i></span>
+              <span class='figcaption' id="char_name"><i>${res.data.name}</i></span>
+              <img class='svg' src=${getAvatar(res.data.url)} alt="${res.data.name} photo">
+              <span class='figcaption' id="char_gender"><img style="width: 1rem;" ${getValueForGender(res.data.gender)}></span>
+              <span class='figcaption' id="char_birth">ДР : <i>${res.data.birth_year}</i></span>
             </div>`);
           });
       });
@@ -218,34 +208,27 @@ const getInfoCharactersOnEpisode = () => {
 
 document.getElementById('test_get_info').addEventListener('click', getInfoCharactersOnEpisode);
 
-const wrapperBts = document.getElementById('get_planets');
-wrapperBts.insertAdjacentHTML('afterend', `
-<button class='btn prev_planets_list' id="prev_planets_list" disabled="disabled">
-  Prev planets list
-</button>
-  `);
-wrapperBts.insertAdjacentHTML('afterend', `
+const getPlanetsBtn = document.getElementById('get_planets');
+getPlanetsBtn.insertAdjacentHTML('afterend', `
   <button class='btn next_planets_list' id="next_planets_list" disabled="disabled">
-    Next planets list
-  </button>
-  `);
+    Next planets list</button>
+  <button class='btn prev_planets_list' id="prev_planets_list" disabled="disabled">
+    Prev planets list</button>`);
 
 const getAllPlanets = () => {
-  document.getElementById('get_planets').setAttribute("disabled", "disabled");
+  getPlanetsBtn.setAttribute("disabled", "disabled");
   document.getElementById('next_planets_list').removeAttribute("disabled");
+  const wrapperPlanets = document.getElementById('wrapper_for_planets');
   let url = 'https://swapi.dev/api/planets/?page=1';
 
-  fetch(url)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      data.results.map((planet) => {
+  axios(url)
+    .then((res) => {
+      res.data.results.map((planet) => {
         document.getElementById('wrapper_for_planets').insertAdjacentHTML('beforeend', `
-        <div class='card'>
-          <img class='svg' src="assets/img/planet.svg" alt="">
-          <span>${planet.name}</span>
-        </div>`);
+            <div class='card'>
+              <img class='svg' src="assets/img/planet.svg" alt="">
+              <span>${planet.name}</span>
+            </div>`);
       });
     });
 
@@ -253,21 +236,13 @@ const getAllPlanets = () => {
     document.getElementById('wrapper_for_planets').innerHTML = '';
     document.getElementById('prev_planets_list').removeAttribute("disabled");
 
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log('🚀 ~ data', data);
-        if (data.next !== null) {
-          url = data.next.replaceAll('https:', 'https:');
-          fetch(url)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-              data.results.map((planet) => {
-                const wrapperPlanets = document.getElementById('wrapper_for_planets');
+    axios(url)
+      .then((res) => {
+        if (res.data.next !== null) {
+          url = res.data.next;
+          axios(res.data.next)
+            .then((res) => {
+              res.data.results.map((planet) => {
                 wrapperPlanets.insertAdjacentHTML('beforeend', `
                   <div class='card'>
                     <img class='svg' src="assets/img/planet.svg" alt="">
@@ -289,25 +264,18 @@ const getAllPlanets = () => {
     document.getElementById('wrapper_for_planets').innerHTML = '';
     document.getElementById('next_planets_list').removeAttribute("disabled");
 
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        if (data.previous !== null) {
-          url = data.previous.replaceAll('https:', 'https:');
-          fetch(url)
-            .then((response) => {
-              return response.json();
-            })
-            .then((data) => {
-              data.results.map((planet) => {
-                const wrapperPlanets = document.getElementById('wrapper_for_planets');
+    axios(url)
+      .then((res) => {
+        if (res.data.previous !== null) {
+          url = res.data.previous;
+          axios(url)
+            .then((res) => {
+              res.data.results.map((planet) => {
                 wrapperPlanets.insertAdjacentHTML('beforeend', `
-                  <div class='card'>
-                    <img class='svg' src="assets/img/planet.svg" alt="">
-                    <span>${planet.name}</span>
-                  </div>`);
+            <div class='card'>
+              <img class='svg' src="assets/img/planet.svg" alt="">
+              <span>${planet.name}</span>
+            </div>`);
               });
             });
         } else {
@@ -321,4 +289,4 @@ const getAllPlanets = () => {
   document.getElementById('prev_planets_list').addEventListener('click', getPrevListPlanets);
 };
 
-document.getElementById('get_planets').addEventListener('click', getAllPlanets);
+getPlanetsBtn.addEventListener('click', getAllPlanets);
